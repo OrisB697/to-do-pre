@@ -22,8 +22,17 @@ function loadTasks() {
 function createItem(item) {
   const clone = itemElement.cloneNode(true);
   const textElement = clone.querySelector(".to-do__item-text");
+  const deleteButton = clone.querySelector(".to-do__item-button_type_delete");
 
   textElement.textContent = item;
+
+  deleteButton.addEventListener("click", () => {
+    clone.remove();
+
+    const items = getTasksFromDOM();
+    saveTasks(items);
+  });
+
   return clone;
 }
 
